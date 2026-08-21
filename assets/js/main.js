@@ -157,3 +157,171 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 revealElements.forEach(el => revealObserver.observe(el));
+
+/* ==========================================
+   CARRUSEL SISTEMA COTIZADOR
+========================================== */
+
+const cotizadorSlides = document.querySelectorAll(
+    '.cotizador-slide'
+);
+
+const cotizadorDots = document.querySelectorAll(
+    '.cotizador-dot'
+);
+
+const cotizadorPrev = document.querySelector(
+    '.cotizador-prev'
+);
+
+const cotizadorNext = document.querySelector(
+    '.cotizador-next'
+);
+
+
+if (
+    cotizadorSlides.length &&
+    cotizadorDots.length
+) {
+
+    let cotizadorCurrent = 0;
+
+
+    function mostrarCotizadorSlide(index) {
+
+        cotizadorSlides.forEach((slide, i) => {
+
+            slide.classList.toggle(
+                'active',
+                i === index
+            );
+
+        });
+
+
+        cotizadorDots.forEach((dot, i) => {
+
+            dot.classList.toggle(
+                'active',
+                i === index
+            );
+
+        });
+
+    }
+
+
+    function siguienteCotizador() {
+
+        cotizadorCurrent++;
+
+        if (
+            cotizadorCurrent >=
+            cotizadorSlides.length
+        ) {
+
+            cotizadorCurrent = 0;
+
+        }
+
+        mostrarCotizadorSlide(
+            cotizadorCurrent
+        );
+
+    }
+
+
+    function anteriorCotizador() {
+
+        cotizadorCurrent--;
+
+        if (cotizadorCurrent < 0) {
+
+            cotizadorCurrent =
+                cotizadorSlides.length - 1;
+
+        }
+
+        mostrarCotizadorSlide(
+            cotizadorCurrent
+        );
+
+    }
+
+
+    cotizadorNext.addEventListener(
+        'click',
+        siguienteCotizador
+    );
+
+
+    cotizadorPrev.addEventListener(
+        'click',
+        anteriorCotizador
+    );
+
+
+    cotizadorDots.forEach((dot, index) => {
+
+        dot.addEventListener(
+            'click',
+            () => {
+
+                cotizadorCurrent = index;
+
+                mostrarCotizadorSlide(
+                    cotizadorCurrent
+                );
+
+            }
+        );
+
+    });
+
+
+    /* Cambio automático */
+
+    let cotizadorInterval = setInterval(
+        siguienteCotizador,
+        4500
+    );
+
+
+    /* Reiniciar temporizador al interactuar */
+
+    function reiniciarCotizador() {
+
+        clearInterval(
+            cotizadorInterval
+        );
+
+        cotizadorInterval = setInterval(
+            siguienteCotizador,
+            4500
+        );
+
+    }
+
+
+    cotizadorNext.addEventListener(
+        'click',
+        reiniciarCotizador
+    );
+
+
+    cotizadorPrev.addEventListener(
+        'click',
+        reiniciarCotizador
+    );
+
+
+    cotizadorDots.forEach(dot => {
+
+        dot.addEventListener(
+            'click',
+            reiniciarCotizador
+        );
+
+    });
+
+}

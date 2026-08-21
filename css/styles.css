@@ -982,3 +982,282 @@ button:focus-visible {
         align-items: center;
     }
 }
+
+/* ==========================================
+   SISTEMA COTIZADOR
+========================================== */
+
+.cotizador-card {
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   CARRUSEL
+========================================== */
+
+.cotizador-carousel {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 230px;
+
+    overflow: hidden;
+
+    background: #0b1120;
+
+}
+
+
+.cotizador-slides {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: relative;
+
+}
+
+
+.cotizador-slide {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .45s ease,
+        visibility .45s ease;
+
+}
+
+
+.cotizador-slide.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+.cotizador-slide img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+/* ==========================================
+   FLECHAS
+========================================== */
+
+.cotizador-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 38px;
+
+    height: 38px;
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.55);
+
+    color: white;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 3;
+
+    transition: .25s ease;
+
+}
+
+
+.cotizador-arrow:hover {
+
+    background: rgba(0,0,0,.8);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+}
+
+
+.cotizador-prev {
+
+    left: 12px;
+
+}
+
+
+.cotizador-next {
+
+    right: 12px;
+
+}
+
+
+/* ==========================================
+   DOTS
+========================================== */
+
+.cotizador-dots {
+
+    position: absolute;
+
+    bottom: 12px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 7px;
+
+    z-index: 3;
+
+}
+
+
+.cotizador-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.45);
+
+    cursor: pointer;
+
+    transition: .25s ease;
+
+}
+
+
+.cotizador-dot.active {
+
+    width: 20px;
+
+    border-radius: 10px;
+
+    background: #00d4ff;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .cotizador-carousel {
+
+        height: 210px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .cotizador-carousel {
+
+        height: 190px;
+
+    }
+
+    .cotizador-arrow {
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 24px;
+
+    }
+
+}
+
+/* ==========================================
+   IMÁGENES DE PROYECTOS
+========================================== */
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #0d1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+/* Si algún proyecto no tiene imagen, mantiene el estilo con texto */
+.project-image[data-tech] {
+    background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.18), transparent 60%), #151d26;
+    color: #6b7885;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.project-image[data-tech] span {
+    opacity: 0.7;
+}
