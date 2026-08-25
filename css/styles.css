@@ -612,6 +612,7 @@ button:focus-visible {
 
 .skills-list span i {
     font-size: 18px;
+    transition: transform 0.3s ease;
 }
 
 .skills-list span:hover {
@@ -622,7 +623,7 @@ button:focus-visible {
 }
 
 .skills-list span:hover i {
-    color: #00d4ff;
+    transform: scale(1.15);
 }
 
 /* ================================
@@ -730,20 +731,62 @@ button:focus-visible {
 .project-links {
     display: flex;
 
-    gap: 20px;
+    flex-wrap: wrap;
+
+    gap: 10px;
 }
 
 .project-links a {
-    color: #d9e0e5;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 
+    padding: 9px 16px;
+
+    border: 1px solid #24313d;
+    border-radius: 6px;
+
+    background: rgba(0, 212, 255, 0.03);
+
+    color: #c5ccd4;
     font-size: 13px;
-    position: relative;
+    font-weight: 500;
 
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+}
+
+.project-links a svg {
+    width: 13px;
+    height: 13px;
+
+    transition: transform 0.3s ease;
 }
 
 .project-links a:hover {
+    border-color: var(--accent);
+
     color: var(--accent);
+
+    background: rgba(0, 212, 255, 0.08);
+
+    transform: translateY(-2px);
+}
+
+.project-links a:hover svg {
+    transform: translate(3px, -3px);
+}
+
+/* Variante "principal" para CTAs como Solicitar demo */
+.project-links a.link-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #061016;
+}
+
+.project-links a.link-primary:hover {
+    background: #33ddff;
+    color: #061016;
+    transform: translateY(-2px);
 }
 
 
